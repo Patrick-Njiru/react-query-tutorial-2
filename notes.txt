@@ -1,0 +1,36 @@
+/NOTE: React Query is not an alternative for axios or fetch
+	// It can, however replace manage state management libraries  - zustand or redux - to handle the state of data being fetched
+
+
+  // gcTime - Garbage Collection time - Timeout in milliseconds for when to delete your query thus getting rid of unnecessary data
+// Recommended - add it here instead of individual queries
+// Recommended - gcTime should be more the staleTime
+
+
+USEQUERY
+
+// staleTime: 4000,
+		// Time in milliseconds that it will wait until data is refectched.
+		// The query must become stale for this to be activated.
+		// Actions that can make a query stale include:
+		// 1. When a new instance of a query is mounted
+		// 2. When the window is refocused - e.g switching tabs
+		// 3. When the network is reconnected
+		// 4. The query is optionally configured to have a refetch interval
+		
+
+		refetchInterval: 4000,
+		// Time interval in milliseconds for the data will be refectched.
+		// The above will refetch the data every 4 seconds
+		// This is helpful for changing data
+
+				// RECOMMENDED: Create your query and mutation functions outside the query to have a clean slate
+// There can be Parallel and Dependent queries
+
+// gcTime - Garbage Collection time - Timeout in milliseconds for when to delete your query thus getting rid of unnecessary data
+// Recommended - add it here instead of individual queries
+// Recommended - gcTime should be more the staleTime
+// Note: Create the query client outside your component to avoid it being created anew every time the component rerenders. Otherwise you may encounter bugs like failure to cache.
+const queryClient = new QueryClient({
+	defaultOptions: { queries: { staleTime: 60000, gcTime: 10 * 60000 } },
+})
